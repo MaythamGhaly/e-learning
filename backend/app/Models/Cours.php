@@ -10,6 +10,6 @@ class Cours extends Model
     use HasFactory;
     public function users()
     {
-        return $this->belongsToMany(User::class, 'cours_student');
+        return $this->belongsToMany(user::class, 'cours_user');
     }
 }

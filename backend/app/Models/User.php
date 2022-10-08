@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'type',
     ];
 
     /**
@@ -67,6 +68,6 @@ class User extends Authenticatable
 
     public function cours()
     {
-        return $this->belongsToMany(cours::class, 'cours_student');
+        return $this->belongsToMany(cours::class, 'cours_user');
     }
 }
