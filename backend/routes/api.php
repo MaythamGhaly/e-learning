@@ -11,6 +11,7 @@ Route::group(['middleware' => 'user.role'], function () {
     Route::post('/logout', [AuthController::class, "logout"])->name("logout");
     Route::post('/add_courses', [AdminController::class, "addCourses"])->name("add-courses");
     Route::post('/add_assignments', [AdminController::class, "addAssignments"])->name("add-Assignments");
+    Route::post('/add_announcements', [AdminController::class, "addAnnouncement"])->name("add-Announcement");
 
 
 });
