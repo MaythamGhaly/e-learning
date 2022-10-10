@@ -1,26 +1,39 @@
 import { useState } from "react";
 
-const Admin = ({ onLogin }) => {
+const Admin = ({ onAddUser }) => {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-  
-    const onSubmit = (e) => {
-      e.preventDefault();
+    const [user_type, setUser_type] = useState('');
 
-      if(!email || !password){
-        alert("email or password incorrect")
-        return
-      }
-  
-      onLogin({ email, password });
-  
-      setEmail("");
-      setPassword("");
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        if (!email || !password || !name || !user_type) {
+            alert("fill all the informations")
+            return
+        }
+
+        onAddUser({ name, email, password, user_type });
+
+        setName("");
+        setEmail("");
+        setPassword("");
+        setUser_type("");
+
     };
     return (
         <>
-            <form className="flex center login-container" onSubmit={onSubmit}>
+            <form className="flex add-user-container" onSubmit={onSubmit}>
                 <div className="login-section">
+                    <h2 className="center">Add User</h2>
+                    <input
+                        className="login-input"
+                        type="text"
+                        placeholder="Enter a name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
                     <input
                         className="login-input"
                         type="email"
@@ -35,8 +48,16 @@ const Admin = ({ onLogin }) => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-
-                    <input type={"submit"} value="Login" className="login-btn" />
+                    <input
+                        className="login-input"
+                        type="text"
+                        placeholder="student or instructor"
+                        value={user_type}
+                        onChange={(e) => setUser_type(e.target.value)}
+                    />
+                    <input type={"submit"} value="Add User" className="login-btn" />
+                </div>
+                <div>
                     
                 </div>
             </form>
@@ -44,4 +65,4 @@ const Admin = ({ onLogin }) => {
     )
 }
 
-export default Login
+export default Admin

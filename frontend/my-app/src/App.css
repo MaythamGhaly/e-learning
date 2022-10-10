@@ -9,6 +9,11 @@
 body {
   font-family: "Poppins", sans-serif;
 }
+.center{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 
 .container {
   overflow: auto;
@@ -51,4 +56,8 @@ body {
   border-radius: 10px;
   cursor: pointer;
   width: 300px;
+}
+
+.add-user-container{
+  margin: 10px 20px;
 }
