@@ -97,3 +97,39 @@ body {
   border-radius: 10px;
   border: solid 1px;
 }
+/* student page */
+.courses{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.checkbox-container{
+  display: flex;
+  margin-right: 20px;
+}
+.checkbox-container label {
+  margin-left: 40px;
+}
+.checkbox{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-self: center;
+  width: 20px;
+  height: 20px;
+}
+
+.courses-register{
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 15px 30px;
+}
+.register-btn{
+  width: 150px;
+  height: 40px;
+  border: 1px solid;
+  border-radius: 10px ;
+  margin: 35px 30px;
+}

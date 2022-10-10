@@ -129,7 +129,7 @@ function App() {
           <Route path="/" element={<Login onLogin={login} />} />
           <Route path="/admin" element={<Admin onAddUser={register} onAddCours={addCours} />} />
           <Route path="/instructor" element={<Instructors onAddStudent={addStudent} onAddAssignment={addAssignment} onAddAnnouncement={addAnnouncement} />} />
-          <Route path="/student" element={<Student />} />
+          <Route path="/student" element={<Student onRegisterCourses={register_courses} />} />
         </Routes>
       </div>
     </BrowserRouter>
