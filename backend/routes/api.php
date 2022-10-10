@@ -16,6 +16,7 @@ Route::group(['middleware' => 'user.role'], function () {
 
 
 
+
 });
 
 Route::post('/register', [AuthController::class, "register"])->name("register");

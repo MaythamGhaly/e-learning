@@ -17,7 +17,10 @@ class AdminController extends Controller
     {
         $cours = new Cours;
         $cours_name=request()->cours_name;
+        $instructor_id=request()->instructor_id;
         $cours->cours_name = $cours_name;
+        $cours->instructor_id = $instructor_id;
+
         
         if ($cours->save()) {
             return response()->json([
