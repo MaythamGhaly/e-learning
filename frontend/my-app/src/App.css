@@ -43,6 +43,9 @@ body {
   flex-direction: column;
   gap: 20px;
   min-width: 300px;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
 }
 
 .login-input{
@@ -59,20 +62,29 @@ body {
   width: 300px;
 }
 
-.add-user-container{
+.admin-container{
   margin: 10px 20px;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
-.line{
+/* .line{
   width: 5px;
   margin: 0 50px;
   border: solid rgba(0, 0, 0, 0.363);
-}
+} */
 
 .instructors-section{
   display: flex;
   flex-direction: column;
   gap: 20px;
   min-width: 300px;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown{
+  width: 300px;
+  height: 30px;
+  border-radius: 10px;
 }

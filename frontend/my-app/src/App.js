@@ -33,9 +33,25 @@ function App() {
 
   }
 
+  const addCours = async (user) => {
+    const url = `http://127.0.0.1:8000/api/add_courses`
+    console.log(user.instructor_id, user.cours_name)
+    const data = {
+      cours_name: user.cours_name,
+      instructor_id: user.instructor_id
+    }
+    const response = await axios.post(url, data, { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } })
+      .then(function (response) {
+        alert("cours added!")
+        return
+      })
+      .catch(function (error) {
+        console.log(error)
+      });
+  }
   const register = async (user) => {
 
-    let url = `http://127.0.0.1:8000/api/register`
+    const url = `http://127.0.0.1:8000/api/register`
     const data = {
       name: user.name,
       email: user.email,
@@ -58,7 +74,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Login onLogin={login} />} />
-          <Route path="/admin" element={<Admin onAddUser={register} />} />
+          <Route path="/admin" element={<Admin onAddUser={register} onAddCours={addCours} />} />
         </Routes>
       </div>
     </BrowserRouter>
