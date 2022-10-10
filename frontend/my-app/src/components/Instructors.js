@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Instructors = ({ onAddStudent, onAddAssignment }) => {
+const Instructors = ({ onAddStudent, onAddAssignment, onAddAnnouncement }) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [user_type, setUser_type] = useState('student');
     const [assignment, setAssignment] = useState('');
+    const [courses, setCourses] = useState([]);
     const [cours_id, setCoursId] = useState('');
+    const [announcement, setAnnouncement] = useState('');
+
 
 
     // const [cours_name, setCours_name] = useState('');
@@ -37,8 +40,18 @@ const Instructors = ({ onAddStudent, onAddAssignment }) => {
         setName("");
         setEmail("");
         setPassword("");
-        setUser_type("");
     };
+
+    const getCourses = async () => {
+
+        const data = await axios.get("http://127.0.0.1:8000/api/get_courses", { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } });
+        const courses = data.data.assignments
+        setCourses(courses)
+    }
+
+    useEffect(() => {
+        getCourses()
+    }, [])
 
     const onAdd = (e) => {
         e.preventDefault();
@@ -46,6 +59,17 @@ const Instructors = ({ onAddStudent, onAddAssignment }) => {
         if (!assignment || !cours_id) alert("fill all the informations");
 
         onAddAssignment({ assignment, cours_id });
+
+        setAssignment("");
+        setCoursId("")
+    };
+    
+    const onAddannouncements = (e) => {
+        e.preventDefault();
+
+        if (!announcement) alert("write an announcement");
+
+        onAddAnnouncement({ announcement }); 
 
         setAssignment("");
         setCoursId("")
@@ -95,11 +119,24 @@ const Instructors = ({ onAddStudent, onAddAssignment }) => {
 
                             {courses.map((cours, index) => (
                                 <option key={index} value={cours._id}>
-                                    {cours.name}
+                                    {cours.cours_name}
                                 </option>
                             ))}
                         </select>
                         <input type={"submit"} value="Add Assignment" className="login-btn" />
+                    </div>
+                </form>
+                <form onSubmit={onAddannouncements}>
+                    <div className="instructors-section">
+                        <h2 className="center">Add announcement</h2>
+                        <input
+                            className="assingment-input"
+                            type="text"
+                            placeholder="  write the announcement"
+                            value={announcement}
+                            onChange={(e) => setAnnouncement(e.target.value)}
+                        />
+                        <input type={"submit"} value="Add Announcement" className="login-btn" />
                     </div>
                 </form>
 
