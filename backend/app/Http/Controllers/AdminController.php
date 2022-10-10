@@ -36,7 +36,9 @@ class AdminController extends Controller
     {
         $assignment = new Assignment;
         $the_assignment=request()->the_assignment;
+        $cours_id=request()->cours_id;
         $assignment->the_assignment = $the_assignment;
+        $assignment->cours_id = $cours_id;
         
         if ($assignment->save()) {
             return response()->json([
