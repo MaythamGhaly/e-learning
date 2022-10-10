@@ -16,6 +16,8 @@ Route::group(['middleware' => 'user.role'], function () {
     Route::post('/add_announcements', [AdminController::class, "addAnnouncement"])->name("add-Announcement");
     Route::get('/get_instructors', [AdminController::class, "getInstructors"])->name("get-instructors");
     Route::post('/add-students', [InstructorController::class, "addStudents"])->name("add-Student");
+    Route::get('/get_courses', [InstructorController::class, "getcourses"])->name("get-courses");
+
 
 
 });

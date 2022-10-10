@@ -40,7 +40,7 @@ class InstructorController extends Controller
         ]);
     }
 
-    public function getAssignments()
+    public function getcourses()
     {
         $id=auth::id();
         $assignments = Cours::where('instructor_id', $id)->get();
@@ -50,4 +50,15 @@ class InstructorController extends Controller
             'assignments'=>$assignments
         ]);
     }
+
+    // public function getAssignments()
+    // {
+    //     $id=auth::id();
+    //     $assignments = Cours::where('instructor_id', $id)->get();
+
+    //     return response()->json([
+    //         'status' => 'success',
+    //         'assignments'=>$assignments
+    //     ]);
+    // }
 }
