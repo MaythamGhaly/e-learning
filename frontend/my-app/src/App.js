@@ -4,9 +4,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header"
 import Login from "./components/Login"
 import Admin from "./components/Admin"
+import Instructors from "./components/Instructors";
 import axios from "axios";
-
 import './App.css';
+
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
       return
     } else if (response.data.user.user_type == "instructor") {
       window.location.href = 'http://localhost:3000/instructor'
+      return
     }
     window.location.href = 'http://localhost:3000/student'
 
@@ -59,10 +61,28 @@ function App() {
       password: user.password,
       user_type: user.user_type
     }
-    const response = await axios.post(url, data)
+    const response = await axios.post(url, data, { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } })
       .then(function (response) {
         alert("User added!")
         return
+      })
+      .catch(function (error) {
+        alert("fill all the informations and try again")
+      });
+  }
+
+  const addStudent = async (user) => {
+
+    const url = `http://127.0.0.1:8000/api/add-students`
+    const data = {
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      user_type: user.user_type
+    }
+    await axios.post(url, data, { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } })
+      .then(function () {
+        alert("Student added!")
       })
       .catch(function (error) {
         alert("fill all the informations and try again")
@@ -76,6 +96,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login onLogin={login} />} />
           <Route path="/admin" element={<Admin onAddUser={register} onAddCours={addCours} />} />
+          <Route path="/instructor" element={<Instructors onAddStudent={addStudent} />} />
         </Routes>
       </div>
     </BrowserRouter>
