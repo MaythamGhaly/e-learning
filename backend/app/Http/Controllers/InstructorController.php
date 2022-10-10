@@ -43,11 +43,11 @@ class InstructorController extends Controller
     public function getcourses()
     {
         $id=auth::id();
-        $assignments = Cours::where('instructor_id', $id)->get();
+        $courses = Cours::get();
 
         return response()->json([
             'status' => 'success',
-            'assignments'=>$assignments
+            'courses'=>$courses
         ]);
     }
 
