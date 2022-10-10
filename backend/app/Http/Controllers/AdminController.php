@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cours;
 use App\Models\Assignment;
+use App\Models\User;
 use App\Models\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -58,5 +59,14 @@ class AdminController extends Controller
         return response()->json([
             'status' => 'failed'
         ], 401);
+    }
+    public function getInstructors()
+    {
+        $instructors = User::where('user_type', 'instructor')->get();
+
+        return response()->json([
+            'status' => 'success',
+            'instructors'=>$instructors
+        ]);
     }
 }
