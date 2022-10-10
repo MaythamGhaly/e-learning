@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\Model;
 
-class Cours extends Eloquent
+class Cours extends Model
 {
     use HasFactory;
     protected $collection = 'courses';
@@ -14,5 +14,4 @@ class Cours extends Eloquent
     protected $fillable = [
         'cours_name'
     ];
-
 }

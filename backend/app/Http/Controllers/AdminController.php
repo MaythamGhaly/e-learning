@@ -13,33 +13,6 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AdminController extends Controller
 {
-    public function addStudents()
-    {
-
-        $validator = validator()->make(request()->all(), [
-            'name' => 'string|required',
-            'email' => 'email|required',
-            'password' => 'string|required',
-            'user_type' => 'string|required',
-        ]);
-        if ($validator->fails()) {
-            return response()->json([
-                'message' => 'registration faild!'
-            ]);
-        }
-        $user = User::create([
-            'name' => request()->get('name'),
-            'email' => request()->get('email'),
-            'password' => bcrypt(request()->get('password')),
-            'user_type' => request()->get('user_type'),
-
-        ]);
-        return response()->json([
-            'message' => 'User Created!',
-            'user' => $user
-        ]);
-    }
-
     public function addCourses(Request $request)
     {
         $cours = new Cours;
