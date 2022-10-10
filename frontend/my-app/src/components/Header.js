@@ -11,7 +11,7 @@ export const Header = ({ title }) => {
 };
 
 Header.defaultProps = {
-  title: "Login",
+  title: "E-Leaning",
 };
 
 export default Header;
