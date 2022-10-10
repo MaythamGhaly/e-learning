@@ -42,6 +42,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  min-width: 300px;
 }
 
 .login-input{
@@ -60,4 +61,18 @@ body {
 
 .add-user-container{
   margin: 10px 20px;
+  flex-wrap: wrap;
+}
+
+.line{
+  width: 5px;
+  margin: 0 50px;
+  border: solid rgba(0, 0, 0, 0.363);
+}
+
+.instructors-section{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 300px;
 }
