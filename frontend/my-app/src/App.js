@@ -5,6 +5,7 @@ import { Header } from "./components/Header"
 import Login from "./components/Login"
 import Admin from "./components/Admin"
 import Instructors from "./components/Instructors";
+import Student from "./components/Student"
 import axios from "axios";
 import './App.css';
 
@@ -128,7 +129,7 @@ function App() {
           <Route path="/" element={<Login onLogin={login} />} />
           <Route path="/admin" element={<Admin onAddUser={register} onAddCours={addCours} />} />
           <Route path="/instructor" element={<Instructors onAddStudent={addStudent} onAddAssignment={addAssignment} onAddAnnouncement={addAnnouncement} />} />
-          <Route path="/student" element={<Admin onAddUser={register} onAddCours={addCours} />} />
+          <Route path="/student" element={<Student />} />
         </Routes>
       </div>
     </BrowserRouter>
