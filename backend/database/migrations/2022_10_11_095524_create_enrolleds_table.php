@@ -15,7 +15,7 @@ class CreateEnrolledsTable extends Migration
     {
         Schema::create('enrolleds', function (Blueprint $table) {
             $table->id();
-            $table->string("courses_name");
+            $table->string("cours_name");
             $table->int("student_id");
             $table->timestamps();
         });

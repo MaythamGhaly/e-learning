@@ -3,16 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-class Enrolled extends Model
+
+class Enrolled extends Eloquent
 {
     use HasFactory;
     protected $collection = 'enrolleds';
  
     
     protected $fillable = [
-        'courses_name',
+        'cours_name',
         'student_id'
     ];
 }
