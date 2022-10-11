@@ -149,7 +149,51 @@ body {
   align-items: center;
 }
 
+.announcement-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.assignment-section h1 {
+  margin-bottom: 50px;
+}
+
 .assignments-list{
   display: flex;
   flex-direction: column;
+}
+
+.answer-section{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 400px;
+}
+
+.answer-input{
+  height: 100px;
+}
+.section-two{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.submit-btn{
+  width: 70px;
+  height: 40px;
+  border-radius: 10px;
+  border: solid 1px;
+  margin-bottom: 50px;
+}
+
+.answer-section button{
+  margin-bottom: 30px;
+}
+
+.announcement-section{
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
 }

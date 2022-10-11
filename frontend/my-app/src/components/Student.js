@@ -6,6 +6,10 @@ const Students = ({ onRegister }) => {
     const [registercourses, setRegisterCourses] = useState([]);
     const [enrolled_courses, setEnrolledCourses] = useState([]);
     const [assignments, setAssignments] = useState([]);
+    const [announcements, setAnnouncement] = useState([]);
+    const [answer, setAnswer] = useState([]);
+
+
 
 
 
@@ -32,12 +36,24 @@ const Students = ({ onRegister }) => {
 
         setRegisterCourses("")
     };
+    
+    const onAnswer = (e) => {
+        e.preventDefault();
+        if (!answer) {
+            alert("write an answer")
+            return;
+        }
+
+        onAnswer(answer);
+
+        setAnswer("")
+    };
 
     const handleChange = (e) => {
         e.preventDefault();
-        const { value, id , checked } = e.target;
+        const { value, id, checked } = e.target;
         if (checked) {
-            setRegisterCourses(prev => [...prev,{id:id,cours_name:value}]);
+            setRegisterCourses(prev => [...prev, { id: id, cours_name: value }]);
         }
     };
 
@@ -55,13 +71,23 @@ const Students = ({ onRegister }) => {
     const getAssignments = async () => {
 
         const data = await axios.get("http://127.0.0.1:8000/api/get_assignments", { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } });
-        console.log(data)
         const assignments = data.data.courses
         setAssignments(assignments)
     }
 
     useEffect(() => {
         getAssignments()
+    }, [])
+
+    const getAnnouncement = async () => {
+
+        const data = await axios.get("http://127.0.0.1:8000/api/get_announcements", { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } });
+        const announcements = data.data.courses
+        setAnnouncement(announcements)
+    }
+
+    useEffect(() => {
+        getAnnouncement()
     }, [])
 
     return (
@@ -98,16 +124,31 @@ const Students = ({ onRegister }) => {
                     </div>
                 </div>
             </form>
-            <form >
+            <form className="section-two" onSubmit={onAnswer}>
                 <div className="assignment-section">
                     <h1>Assignments</h1>
                     <div className="assignments-list">
-                    {assignments.map((assignment, index) => (
-                               <li >{assignment.the_assignment}
-                               <button>asdf</button></li>
-                    ))}
-                    
+                        {assignments.map((assignment, index) => (
+                            <div className="answer-section">
+                                <h4> {assignment.the_assignment} </h4>
+                                <input
+                                    type={'text'}
+                                    className='answer-input'
+                                    placeholder="Enter your email"
+                                    value={answer}
+                                    onChange={(e) => setAnswer(e.target.value)} />
+                                <input type={"submit"} value="Submit" className="submit-btn" />
+                            </div>
+                        ))}
                     </div>
+                </div>
+                <div className="announcement-section">
+                    <h1>Announcement</h1>
+                    {announcements.map((announcement, index) => (
+                        <div className="answer-section">
+                            <h4> {announcement.the_Announcement} </h4>
+                        </div>
+                    ))}
                 </div>
             </form>
 
