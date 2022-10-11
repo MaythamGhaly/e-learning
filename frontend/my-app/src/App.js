@@ -120,6 +120,21 @@ function App() {
         alert("fill all the informations and try again")
       });
   }
+  
+  const registerCourses = async (user) => {
+
+    const url = `http://127.0.0.1:8000/api/add_announcements`
+    const data = {
+      the_Announcement: user.announcement
+    }
+    await axios.post(url, data, { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } })
+      .then(function () {
+        alert("Announcement added!")
+      })
+      .catch(function (error) {
+        alert("fill all the informations and try again")
+      });
+  }
 
   return (
     <BrowserRouter>
@@ -129,7 +144,7 @@ function App() {
           <Route path="/" element={<Login onLogin={login} />} />
           <Route path="/admin" element={<Admin onAddUser={register} onAddCours={addCours} />} />
           <Route path="/instructor" element={<Instructors onAddStudent={addStudent} onAddAssignment={addAssignment} onAddAnnouncement={addAnnouncement} />} />
-          <Route path="/student" element={<Student onRegisterCourses={register_courses} />} />
+          <Route path="/student" element={<Student onRegisterCourses={registerCourses} />} />
         </Routes>
       </div>
     </BrowserRouter>
