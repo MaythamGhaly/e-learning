@@ -9,6 +9,7 @@ const Students = ({ onRegister, onSubmitAnswer }) => {
     const [announcements, setAnnouncement] = useState([]);
     const [answer, setAnswer] = useState('');
 
+    // fetch api to get the courses
     const getCourses = async () => {
 
         const data = await axios.get("http://127.0.0.1:8000/api/get_courses", { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } });
@@ -19,6 +20,7 @@ const Students = ({ onRegister, onSubmitAnswer }) => {
         getCourses()
     }, [])
 
+    // courses registration
     const onSubmit = (e) => {
         e.preventDefault();
         if (registercourses.length == 0) {
@@ -30,7 +32,17 @@ const Students = ({ onRegister, onSubmitAnswer }) => {
 
         setRegisterCourses("")
     };
+     
+    // take the checked courses
+    const handleChange = (e) => {
+        e.preventDefault();
+        const { value, id, checked } = e.target;
+        if (checked) {
+            setRegisterCourses(prev => [...prev, { id: id, cours_name: value }]);
+        }
+    };
 
+    // Submit answer
     const onAnswer = (e) => {
         e.preventDefault();
         if (!answer) {
@@ -43,14 +55,7 @@ const Students = ({ onRegister, onSubmitAnswer }) => {
         setAnswer("")
     };
 
-    const handleChange = (e) => {
-        e.preventDefault();
-        const { value, id, checked } = e.target;
-        if (checked) {
-            setRegisterCourses(prev => [...prev, { id: id, cours_name: value }]);
-        }
-    };
-
+    // get enrolled courses
     const getEnrolledCourses = async () => {
 
         const data = await axios.get("http://127.0.0.1:8000/api/get_enrolled_courses", { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } });
@@ -62,6 +67,7 @@ const Students = ({ onRegister, onSubmitAnswer }) => {
         getEnrolledCourses()
     }, [])
 
+    // get asignments
     const getAssignments = async () => {
 
         const data = await axios.get("http://127.0.0.1:8000/api/get_assignments", { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } });
@@ -73,6 +79,7 @@ const Students = ({ onRegister, onSubmitAnswer }) => {
         getAssignments()
     }, [])
 
+    //  get announcement
     const getAnnouncement = async () => {
 
         const data = await axios.get("http://127.0.0.1:8000/api/get_announcements", { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } });

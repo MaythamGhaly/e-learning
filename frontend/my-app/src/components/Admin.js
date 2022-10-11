@@ -10,7 +10,7 @@ const Admin = ({ onAddUser, onAddCours }) => {
     const [instructors, setInstructors] = useState([])
     const [instructor_id, setInstructorId] = useState('')
 
-
+    // fetch api to get instructor
     const getInstructors = async () => {
 
         const data = await axios.get("http://127.0.0.1:8000/api/get_instructors", { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } });
@@ -22,7 +22,7 @@ const Admin = ({ onAddUser, onAddCours }) => {
         getInstructors()
     }, [])
 
-
+    // submit registration
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -36,6 +36,7 @@ const Admin = ({ onAddUser, onAddCours }) => {
         setUser_type("");
     };
 
+    // add courses
     const onAdd = (e) => {
         e.preventDefault();
 

@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 
+// create a header simple
 export const Header = ({ title }) => {
   const location = useLocation();
   return (

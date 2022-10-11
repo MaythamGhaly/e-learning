@@ -11,25 +11,7 @@ const Instructors = ({ onAddStudent, onAddAssignment, onAddAnnouncement }) => {
     const [cours_id, setCoursId] = useState('');
     const [announcement, setAnnouncement] = useState('');
 
-
-
-    // const [cours_name, setCours_name] = useState('');
-    // const [instructors, setInstructors] = useState([])
-    // const [instructor_id, setInstructorId] = useState('')
-
-
-    // const getInstructors = async () => {
-
-    //     const data = await axios.get("http://127.0.0.1:8000/api/get_instructors", { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } });
-    //     const users = data.data.instructors
-    //     setInstructors(users)
-    // }
-
-    // useEffect(() => {
-    //     getInstructors()
-    // }, [])
-
-
+    // Add registration 
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -42,17 +24,11 @@ const Instructors = ({ onAddStudent, onAddAssignment, onAddAnnouncement }) => {
         setPassword("");
     };
 
-    const getCourses = async () => {
-
-        const data = await axios.get("http://127.0.0.1:8000/api/get_courses", { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } });
-        const courses = data.data.courses
-        setCourses(courses)
-    }
-
     useEffect(() => {
         getCourses()
     }, [])
 
+    // add assignment
     const onAdd = (e) => {
         e.preventDefault();
 
@@ -64,6 +40,7 @@ const Instructors = ({ onAddStudent, onAddAssignment, onAddAnnouncement }) => {
         setCoursId("")
     };
     
+    // add announcement
     const onAddannouncements = (e) => {
         e.preventDefault();
 

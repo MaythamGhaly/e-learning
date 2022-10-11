@@ -12,6 +12,7 @@ import './App.css';
 
 function App() {
 
+  // login function
   const login = async (user) => {
     let url = `http://127.0.0.1:8000/api/login`
     const data = {
@@ -25,6 +26,7 @@ function App() {
       });
     localStorage.setItem("token", response.data.access_token)
     localStorage.setItem("user", response.data.user._id)
+    // componenet locations
     if (response.data.user.user_type == "admin") {
       window.location.href = 'http://localhost:3000/admin'
       return
@@ -36,6 +38,7 @@ function App() {
 
   }
 
+  // function let the admin to add courses and assign it to instructor
   const addCours = async (user) => {
     const url = `http://127.0.0.1:8000/api/add_courses`
     console.log(user.instructor_id, user.cours_name)
@@ -53,6 +56,7 @@ function App() {
       });
   }
   
+  // function let the admin to add users
   const register = async (user) => {
 
     const url = `http://127.0.0.1:8000/api/register`
@@ -72,6 +76,7 @@ function App() {
       });
   }
 
+  // function let instructor to add student
   const addStudent = async (user) => {
 
     const url = `http://127.0.0.1:8000/api/add-students`
@@ -90,6 +95,7 @@ function App() {
       });
   }
 
+  // fuction to let instructor to add assignment
   const addAssignment = async (user) => {
 
     const url = `http://127.0.0.1:8000/api/add_assignments`
@@ -106,6 +112,7 @@ function App() {
       });
   }
 
+  // fuction to let instructor to add announcement
   const addAnnouncement = async (user) => {
 
     const url = `http://127.0.0.1:8000/api/add_announcements`
@@ -121,6 +128,7 @@ function App() {
       });
   }
   
+  // function let the students to submit assignments
   const submitAssignment = async (answer) => {
 
     const url = `http://127.0.0.1:8000/api/submit_assignments`
@@ -137,6 +145,7 @@ function App() {
       });
   }
 
+  // function let the student to register a courses
   const registerCourses = async (courses) => {
 
     const url = `http://127.0.0.1:8000/api/courses_register`
@@ -158,6 +167,7 @@ function App() {
     
   }
 
+  // routers
   return (
     <BrowserRouter>
       <div className="container">
