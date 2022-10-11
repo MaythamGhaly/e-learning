@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CoursRegister;
 use App\Models\Assignment;
+use App\Models\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,8 +45,17 @@ class StudentController extends Controller
 
     public function getAssignments()
     {
-        $id=auth::id();
         $assignments = Assignment::get();
+
+        return response()->json([
+            'status' => 'success',
+            'courses'=>$assignments
+        ]);
+    }
+
+    public function getAnnouncement()
+    {
+        $assignments = Announcement::get();
 
         return response()->json([
             'status' => 'success',
