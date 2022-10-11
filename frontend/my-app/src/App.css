@@ -121,10 +121,8 @@ body {
 }
 
 .courses-register{
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  margin: 15px 30px;
+  width: 500px;
+  margin: 15px 60px;
 }
 .register-btn{
   width: 150px;
@@ -132,4 +130,26 @@ body {
   border: 1px solid;
   border-radius: 10px ;
   margin: 35px 30px;
+}
+
+/* student page */
+.courses-section{
+  display: flex;
+  justify-content: space-evenly;
+}
+.enrolled-list{
+  gap: 50px;
+  margin: 0px 30px;
+}
+
+.assignment-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.assignments-list{
+  display: flex;
+  flex-direction: column;
 }

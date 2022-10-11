@@ -45,7 +45,7 @@ const Instructors = ({ onAddStudent, onAddAssignment, onAddAnnouncement }) => {
     const getCourses = async () => {
 
         const data = await axios.get("http://127.0.0.1:8000/api/get_courses", { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } });
-        const courses = data.data.assignments
+        const courses = data.data.courses
         setCourses(courses)
     }
 

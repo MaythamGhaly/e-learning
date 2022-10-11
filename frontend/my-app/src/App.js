@@ -126,8 +126,10 @@ function App() {
     const url = `http://127.0.0.1:8000/api/courses_register`
     courses.map((cours) => {
       const data = {
-        cours_name : cours
+        cours_name : cours.cours_name,
+        cours_id : cours.id
       }
+      console.log(data)
       
       axios.post(url, data, { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } })
         .then(function () {
