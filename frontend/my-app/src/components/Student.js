@@ -1,19 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Students = ({ onRegister }) => {
+const Students = ({ onRegister, onSubmitAnswer }) => {
     const [courses, setCourses] = useState([]);
     const [registercourses, setRegisterCourses] = useState([]);
     const [enrolled_courses, setEnrolledCourses] = useState([]);
     const [assignments, setAssignments] = useState([]);
     const [announcements, setAnnouncement] = useState([]);
-    const [answer, setAnswer] = useState([]);
-
-
-
-
-
-
+    const [answer, setAnswer] = useState('');
 
     const getCourses = async () => {
 
@@ -36,7 +30,7 @@ const Students = ({ onRegister }) => {
 
         setRegisterCourses("")
     };
-    
+
     const onAnswer = (e) => {
         e.preventDefault();
         if (!answer) {
@@ -44,7 +38,7 @@ const Students = ({ onRegister }) => {
             return;
         }
 
-        onAnswer(answer);
+        onSubmitAnswer(answer);
 
         setAnswer("")
     };
@@ -124,7 +118,7 @@ const Students = ({ onRegister }) => {
                     </div>
                 </div>
             </form>
-            <form className="section-two" onSubmit={onAnswer}>
+            <form onSubmit={onAnswer} className="section-two" >
                 <div className="assignment-section">
                     <h1>Assignments</h1>
                     <div className="assignments-list">
@@ -132,10 +126,12 @@ const Students = ({ onRegister }) => {
                             <div className="answer-section">
                                 <h4> {assignment.the_assignment} </h4>
                                 <input
+                                    id={index}
                                     type={'text'}
                                     className='answer-input'
-                                    placeholder="Enter your email"
+                                    placeholder="Enter your answer here"
                                     value={answer}
+                                    key={index}
                                     onChange={(e) => setAnswer(e.target.value)} />
                                 <input type={"submit"} value="Submit" className="submit-btn" />
                             </div>

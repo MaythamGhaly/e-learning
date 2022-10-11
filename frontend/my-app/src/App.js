@@ -121,11 +121,12 @@ function App() {
       });
   }
   
-  const submitAssignment = async (user) => {
+  const submitAssignment = async (answer) => {
 
-    const url = `http://127.0.0.1:8000/api/add_announcements`
+    const url = `http://127.0.0.1:8000/api/submit_assignments`
+    console.log(answer)
     const data = {
-      answer: user.answer
+      answer: answer
     }
     await axios.post(url, data, { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } })
       .then(function () {
@@ -165,7 +166,7 @@ function App() {
           <Route path="/" element={<Login onLogin={login} />} />
           <Route path="/admin" element={<Admin onAddUser={register} onAddCours={addCours} />} />
           <Route path="/instructor" element={<Instructors onAddStudent={addStudent} onAddAssignment={addAssignment} onAddAnnouncement={addAnnouncement} />} />
-          <Route path="/student" element={<Student onRegister={registerCourses} onAnswer={submitAssignment} />} />
+          <Route path="/student" element={<Student onRegister={registerCourses} onSubmitAnswer={submitAssignment} />} />
         </Routes>
       </div>
     </BrowserRouter>
