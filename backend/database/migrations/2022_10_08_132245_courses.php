@@ -18,6 +18,7 @@ class Courses extends Migration
             $table->string('cours_name');
             $table->timestamps();
         });
+        
     }
 
     /**

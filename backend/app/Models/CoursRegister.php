@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-
-class Enrolled extends Eloquent
+class CoursRegister extends Eloquent
 {
     use HasFactory;
-    protected $collection = 'enrolleds';
+    protected $collection = 'courses_registers';
  
     
     protected $fillable = [
