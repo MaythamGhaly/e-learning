@@ -20,6 +20,9 @@ Route::group(['middleware' => 'user.role'], function () {
     Route::get('/get_courses', [InstructorController::class, "getcourses"])->name("get-Courses");
     Route::post('/courses_register', [StudentController::class, "registeCourses"])->name("courses-Register");
     Route::get('/get_enrolled_courses', [StudentController::class, "getEnrolledCourses"])->name("get-Enrolled-Courses");
+    Route::get('/get_enrolled_courses', [StudentController::class, "getEnrolledCourses"])->name("get-Enrolled-Courses");
+    Route::get('/get_assignments', [StudentController::class, "getAssignments"])->name("get-Assignmets");
+
 
 
 
