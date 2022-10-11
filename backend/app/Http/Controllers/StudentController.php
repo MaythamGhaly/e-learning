@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CoursRegister;
 use App\Models\Assignment;
 use App\Models\Announcement;
+use App\Models\Submit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,6 +24,26 @@ class StudentController extends Controller
         
         
         if ($Coursregister->save()) {
+            return response()->json([
+                'status' => 'success'
+            ]);
+        }
+        return response()->json([
+            'status' => 'failed'
+        ], 401);
+    }
+    
+    public function submitAssignments()
+    {
+        $id=auth::id();
+        $Submit = new Submit;
+        $answer=request()->answer;
+        $student_id=request()->id;
+        $Submit->answer = $answer;
+        $Submit->id = $id;
+
+        
+        if ($Submit->save()) {
             return response()->json([
                 'status' => 'success'
             ]);
