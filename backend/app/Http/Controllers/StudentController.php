@@ -27,4 +27,15 @@ class StudentController extends Controller
             'status' => 'failed'
         ], 401);
     }
+    
+    public function getEnrolledCourses()
+    {
+        $id=auth::id();
+        $courses = Coursregister::where('student_id',$id)->get();
+
+        return response()->json([
+            'status' => 'success',
+            'courses'=>$courses
+        ]);
+    }
 }

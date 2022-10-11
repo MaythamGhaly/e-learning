@@ -19,6 +19,7 @@ Route::group(['middleware' => 'user.role'], function () {
     Route::post('/add-students', [InstructorController::class, "addStudents"])->name("add-Student");
     Route::get('/get_courses', [InstructorController::class, "getcourses"])->name("get-Courses");
     Route::post('/courses_register', [StudentController::class, "registeCourses"])->name("courses-Register");
+    Route::get('/get_enrolled_courses', [StudentController::class, "getEnrolledCourses"])->name("get-Enrolled-Courses");
 
 
 
