@@ -24,10 +24,6 @@ const Instructors = ({ onAddStudent, onAddAssignment, onAddAnnouncement }) => {
         setPassword("");
     };
 
-    useEffect(() => {
-        getCourses()
-    }, [])
-
     // add assignment
     const onAdd = (e) => {
         e.preventDefault();
@@ -48,9 +44,18 @@ const Instructors = ({ onAddStudent, onAddAssignment, onAddAnnouncement }) => {
 
         onAddAnnouncement({ announcement }); 
 
-        setAssignment("");
-        setCoursId("")
+        setAnnouncement("");
     };
+
+    const getCourses = async () => {
+
+        const data = await axios.get("http://127.0.0.1:8000/api/get_courses", { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } });
+        const courses = data.data.courses
+        setCourses(courses)
+    }
+    useEffect(() => {
+        getCourses()
+    }, [])
 
     return (
         <>
