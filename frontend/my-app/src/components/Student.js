@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Student = (onSubmit) => {
+const Students = ({onRegister}) => {
     const [courses, setCourses] = useState([]);
+    const [registercourses, setRegisterCourses] = useState([]);
+
 
 
     const getCourses = async () => {
 
         const data = await axios.get("http://127.0.0.1:8000/api/get_courses", { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } });
         const courses = data.data.courses
-        console.log(courses)
         setCourses(courses)
     }
     useEffect(() => {
@@ -18,27 +19,40 @@ const Student = (onSubmit) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        console.log(registercourses)
+        if (registercourses.length == 0){
+            alert("select courses") 
+            return;
+        }
 
-        if (!courses) alert("fill all the informations");
+        onRegister( registercourses );
 
-        onRegisterCourses({ courses });
-
-        setCourses("")
+        setRegisterCourses("")
     };
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        const { value, checked } = e.target;
+        if (checked) {
+            setRegisterCourses(prev => [...prev, value]);
+          }
+    };
+    
+
     return (
         <>
             <form onSubmit={onSubmit}>
+                <h1>Courses Register</h1>
                 <div className="courses-register">
                     <div className="courses">
                         {courses.map((cours, index) => (
                             <div className="checkbox-container">
-
                                 <input type={"checkbox"}
-                                    key={index}
                                     id={cours._id}
                                     className={"checkbox"}
-                                    value={cours}
-                                    onChange={(e) => setCourses(e.target.value)} />
+                                    key={index}
+                                    value={cours.cours_name}
+                                    onChange={handleChange} />
                                 <label>{cours.cours_name}</label>
                             </div>
                         ))}
@@ -50,4 +64,4 @@ const Student = (onSubmit) => {
     )
 }
 
-export default Student
+export default Students
