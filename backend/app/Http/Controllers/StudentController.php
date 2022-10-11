@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CoursRegister;
+use App\Models\Assignment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,8 +14,10 @@ class StudentController extends Controller
         $id=auth::id();
         $Coursregister = new Coursregister;
         $cours_name=request()->cours_name;
+        $cours_id=request()->cours_id;
         $student_id=request()->student_id;
         $Coursregister->cours_name = $cours_name;
+        $Coursregister->cours_id = $cours_id;
         $Coursregister->student_id = $id;
         
         
@@ -36,6 +39,17 @@ class StudentController extends Controller
         return response()->json([
             'status' => 'success',
             'courses'=>$courses
+        ]);
+    }
+
+    public function getAssignments()
+    {
+        $id=auth::id();
+        $assignments = Assignment::get();
+
+        return response()->json([
+            'status' => 'success',
+            'courses'=>$assignments
         ]);
     }
 }
